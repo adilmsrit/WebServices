@@ -39,7 +39,7 @@ public class RestClient {
             for (Header header : headersArray){
                 allHeaders.put(header.getName(), header.getValue());
             }
-
+            System.out.println("Header Array -->" + allHeaders);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
