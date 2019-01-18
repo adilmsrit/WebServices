@@ -14,7 +14,7 @@ public class BaseClass {
         try {
             prop = new Properties();
             FileInputStream fs = new FileInputStream(System.getProperty("C:\\Users\\mohammed.nazeer\\IdeaProjects\\WebServices\\src\\main\\java\\config\\config.properties"));
-            //FileInputStream fs = new FileInputStream(System.getProperty("config/config.properties"));
+            //FileInputStream fs = new FileInputStream(System.getProperty("/main/java/config/config.properties"));
             prop.load(fs);
 
         } catch (Exception e) {

@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class Client {
+public class RestClient {
     //Get Method
     public void get(String url) throws Exception {
 
@@ -27,8 +27,6 @@ public class Client {
 
             //b. Json String:
             String responseString = EntityUtils.toString(closeableHttpResponse.getEntity(), "UTF-8");
-            System.out.println(responseString);
-
 
             JSONObject responseJson = new JSONObject(responseString);
             System.out.println("Response Jason from API --> " + responseJson);
@@ -40,7 +38,6 @@ public class Client {
 
             for (Header header : headersArray){
                 allHeaders.put(header.getName(), header.getValue());
-
             }
 
         } catch (Exception e) {
