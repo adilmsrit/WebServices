@@ -27,7 +27,7 @@ public class GetAPITest extends BaseClass {
         url = "https://reqres.in/api/users";
     }
 
-    @Test
+ //   @Test
     public void getAPITest() throws Exception {
         restClient = new RestClient();
         closeableHttpResponse = restClient.get(url);
@@ -47,8 +47,54 @@ public class GetAPITest extends BaseClass {
 
         String s = TestUtils.getValueByJPath(responseJson, "/total");
 
-        System.out.println("total is --> "+s);
-        Assert.assertEquals(Integer.parseInt(s),12);
+        System.out.println("total is --> " + s);
+        Assert.assertEquals(Integer.parseInt(s), 12);
+
+
+        //c. Get all Headers.
+        Header[] headersArray = closeableHttpResponse.getAllHeaders();
+
+        HashMap<String, String> allHeaders = new HashMap<String, String>();
+
+        for (Header header : headersArray) {
+            allHeaders.put(header.getName(), header.getValue());
+        }
+        System.out.println("Header Array -->" + allHeaders);
+
+    }
+
+    @Test
+    public void getAPITestWithHeaders() throws Exception {
+
+        restClient = new RestClient();
+
+        HashMap<String, String> headerMap = new HashMap<String, String>();
+        headerMap.put("Content-Type", "application/json");
+        headerMap.put("Content-Typee", "application/xml");
+        headerMap.put("authentication", "a8721jlkjkd#asdj76767676");
+        headerMap.put("Auth Token", "xyz234324234");
+
+
+        closeableHttpResponse = restClient.get(url, headerMap);
+
+        //a. Get the Status code.
+        int statusCode = closeableHttpResponse.getStatusLine().getStatusCode();
+        System.out.println("Status code Test 2--> " + statusCode);
+
+        Assert.assertEquals(statusCode, RESPONSE_STATUS_CODE_200, "Status code is not 200");
+
+
+        //b. Json String:
+        String responseString = EntityUtils.toString(closeableHttpResponse.getEntity(), "UTF-8");
+
+        JSONObject responseJson = new JSONObject(responseString);
+        System.out.println("Response Jason from API --> " + responseJson);
+
+        String s = TestUtils.getValueByJPath(responseJson, "/total");
+
+        System.out.println("total is --> " + s);
+        Assert.assertEquals(Integer.parseInt(s), 12);
+
 
         //c. Get all Headers.
         Header[] headersArray = closeableHttpResponse.getAllHeaders();
