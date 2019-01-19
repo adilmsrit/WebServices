@@ -5,10 +5,9 @@ import org.json.JSONObject;
 
 public class TestUtils {
 
-    public static JSONObject responsejson;
 
-    public static String getValueByJPath(String jpath) {
-        Object obj = responsejson;
+    public static String getValueByJPath(JSONObject jsonObject, String jpath) {
+        Object obj = jsonObject;
 
         for (String s : jpath.split("/"))
             if (!s.isEmpty())

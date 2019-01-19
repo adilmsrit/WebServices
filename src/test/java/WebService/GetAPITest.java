@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.TestUtils;
 
 import java.util.HashMap;
 
@@ -43,6 +44,11 @@ public class GetAPITest extends BaseClass {
 
         JSONObject responseJson = new JSONObject(responseString);
         System.out.println("Response Jason from API --> " + responseJson);
+
+        String s = TestUtils.getValueByJPath(responseJson, "/total");
+
+        System.out.println("total is --> "+s);
+        Assert.assertEquals(Integer.parseInt(s),12);
 
         //c. Get all Headers.
         Header[] headersArray = closeableHttpResponse.getAllHeaders();
