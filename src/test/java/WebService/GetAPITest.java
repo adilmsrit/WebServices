@@ -27,7 +27,7 @@ public class GetAPITest extends BaseClass {
         url = "https://reqres.in/api/users";
     }
 
- //   @Test
+    @Test(priority = 0)
     public void getAPITest() throws Exception {
         restClient = new RestClient();
         closeableHttpResponse = restClient.get(url);
@@ -50,6 +50,9 @@ public class GetAPITest extends BaseClass {
         System.out.println("total is --> " + s);
         Assert.assertEquals(Integer.parseInt(s), 12);
 
+        String lastName = TestUtils.getValueByJPath(responseJson, "/data[0]/last_name"); // This is to pull out data from the array.
+        String id = TestUtils.getValueByJPath(responseJson, "/data[0]/id"); // This is to pull out data from the array.
+
 
         //c. Get all Headers.
         Header[] headersArray = closeableHttpResponse.getAllHeaders();
@@ -61,9 +64,10 @@ public class GetAPITest extends BaseClass {
         }
         System.out.println("Header Array -->" + allHeaders);
 
+
     }
 
-    @Test
+    @Test(priority = 1)
     public void getAPITestWithHeaders() throws Exception {
 
         restClient = new RestClient();

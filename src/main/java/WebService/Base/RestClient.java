@@ -37,8 +37,5 @@ public class RestClient {
 
         return closeableHttpResponse;
 
-
-
-
     }
 }
