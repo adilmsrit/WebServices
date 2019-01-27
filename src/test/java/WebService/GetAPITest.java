@@ -15,8 +15,6 @@ import java.util.HashMap;
 
 public class GetAPITest extends BaseClass {
     BaseClass baseClass;
-    String serviceUrl;
-    String apiUrl;
     String url;
     RestClient restClient;
     CloseableHttpResponse closeableHttpResponse;
