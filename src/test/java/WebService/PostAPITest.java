@@ -50,9 +50,15 @@ public class PostAPITest extends BaseClass {
         System.out.println("statusCode --> " + statusCode);
         Assert.assertEquals(statusCode, baseClass.RESPONSE_STATUS_CODE_201);
 
+        //2. JsonString
         String responseString = EntityUtils.toString(closeableHttpResponse.getEntity(), "UTF-8");
+
         JSONObject jsonObject = new JSONObject(responseString);
+        System.out.println("Response from API is : "+ responseString);
         System.out.println("jsonObject --> "+jsonObject);
+
+        //json to java object:
+        Users userResObj = mapper.readValue(responseString, Users.class); // actual usres onject.
 
 
 
